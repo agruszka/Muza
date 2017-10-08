@@ -1090,10 +1090,34 @@ namespace ConsoleApplication1
             {
                 Console.WriteLine($"{song.TrackName,-35} | Duration: {song.Duration}");
                
+
+
+            }
+            Console.WriteLine("Naciśnij Dowolny klawisz, żeby wyczyścić konsolę i wyświetlić utwory od najkrótszego");
+            Console.ReadKey();
+            Console.Clear();
+
+            var SongsInOrder = TracksOfParticularAlbum.OrderBy(t => t.Duration);
+            foreach (var OrderedSong in SongsInOrder)
+            {
+                Console.WriteLine($"{OrderedSong.TrackName,-35} | Duration: {OrderedSong.Duration}");
+
             }
 
-           
 
+                var ShortestSongDuration = TracksOfParticularAlbum.Min(t => t.Duration);
+            var ShortestSong = TracksOfParticularAlbum.First(t => t.Duration == ShortestSongDuration).TrackName;
+            var LongestSongDuration = TracksOfParticularAlbum.Max(t => t.Duration);
+            var LongestSong = TracksOfParticularAlbum.First(t => t.Duration == LongestSongDuration).TrackName;
+            var AvarageSongDuration = TracksOfParticularAlbum.Average(t => t.Duration.TotalMinutes);
+            var AlbumLength =  new TimeSpan(TracksOfParticularAlbum.Sum(t => t.Duration.Ticks));
+
+            Console.WriteLine($"Najkrótszy utwór ma {ShortestSongDuration}");
+            Console.WriteLine($"Najkrótszym utwórem jest {ShortestSong}");
+            Console.WriteLine($"Najdłuższy utwór ma {LongestSongDuration}");
+            Console.WriteLine($"Najdłuższym utwórem jest {LongestSong}");
+            Console.WriteLine($"Średnia długość utwóru to {AvarageSongDuration}");
+            Console.WriteLine($"Cały album ma długość {AlbumLength}");
         }
     }
 
